@@ -18,8 +18,8 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-		<PackageTags>OpenTK, GLControl</PackageTags>
-		<PackageId>OpenTKEzz.GLControl</PackageId>
+		<PackageTags>OpenTK, GLWpfControl</PackageTags>
+		<PackageId>OpenTKEzz.GLWpfControl</PackageId>
 		<Version>4.3.4</Version>
 	</PropertyGroup>
 
