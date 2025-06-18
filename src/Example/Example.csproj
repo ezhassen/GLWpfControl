@@ -1,21 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UseWPF>true</UseWPF>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <StartupObject>Example.App</StartupObject>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFrameworks>net9.0-windows;netcoreapp3.1;net462</TargetFrameworks>
+		<UseWPF>true</UseWPF>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<StartupObject>Example.App</StartupObject>
 
-  <ItemGroup>
-    <None Include="..\..\.editorconfig" Link=".editorconfig" />
-  </ItemGroup>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\GLWpfControl\GLWpfControl.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\..\.editorconfig" Link=".editorconfig" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="OpenTK" Version="4.8.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\GLWpfControl\GLWpfControl.csproj" />
+	</ItemGroup>
 </Project>

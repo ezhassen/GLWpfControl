@@ -1,14 +1,11 @@
+using OpenTK.Windowing.Common;
+using OpenTK.Wpf.Interop;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
-using OpenTK.Wpf.Interop;
-using System.Windows.Interop;
-using OpenTK.Windowing.Common;
 
 namespace OpenTK.Wpf
 {
@@ -84,7 +81,8 @@ namespace OpenTK.Wpf
         /// If this control is rendering continuously.
         /// If this is false, then redrawing will only occur when <see cref="UIElement.InvalidateVisual"/> is called.
         /// </summary>
-        public bool RenderContinuously {
+        public bool RenderContinuously
+        {
             get => Settings.RenderContinuously;
             set => Settings.RenderContinuously = value;
         }
@@ -120,10 +118,10 @@ namespace OpenTK.Wpf
         private TimeSpan? _lastRenderTime = TimeSpan.FromSeconds(-1);
 
         [Obsolete("This property has no effect. See RegisterToEventsDirectly.")]
-		public bool CanInvokeOnHandledEvents { get; set; } = true;
+        public bool CanInvokeOnHandledEvents { get; set; } = true;
 
         [Obsolete("If you want to receive keyboard events without having focus you can use EventManager.RegisterClassHandler yourself. The control is by default focusable and will get key events when focused. This property will have no effect.")]
-		public bool RegisterToEventsDirectly { get; set; } = true;
+        public bool RegisterToEventsDirectly { get; set; } = true;
 
         /// <summary>
         /// Used to create a new control. Before rendering can take place, <see cref="Start(GLWpfControlSettings)"/> must be called.
@@ -154,7 +152,8 @@ namespace OpenTK.Wpf
         /// </exception>
         public void Start(GLWpfControlSettings settings)
         {
-            if (_isStarted) {
+            if (_isStarted)
+            {
                 throw new InvalidOperationException($"{nameof(Start)} must only be called once for a given {nameof(GLWpfControl)}");
             }
 
@@ -164,11 +163,14 @@ namespace OpenTK.Wpf
             _renderer = new GLWpfControlRenderer(Settings);
             _renderer.GLRender += timeDelta => Render?.Invoke(timeDelta);
             _renderer.GLAsyncRender += () => AsyncRender?.Invoke();
-            IsVisibleChanged += (_, args) => {
-                if ((bool) args.NewValue) {
+            IsVisibleChanged += (_, args) =>
+            {
+                if ((bool)args.NewValue)
+                {
                     CompositionTarget.Rendering += OnCompTargetRender;
                 }
-                else {
+                else
+                {
                     CompositionTarget.Rendering -= OnCompTargetRender;
                 }
             };
@@ -178,7 +180,7 @@ namespace OpenTK.Wpf
 
             Ready?.Invoke();
         }
-        
+
         private void OnUnloaded()
         {
             if (_isStarted)
@@ -201,14 +203,14 @@ namespace OpenTK.Wpf
         private void OnCompTargetRender(object? sender, EventArgs e)
         {
             TimeSpan? currentRenderTime = (e as RenderingEventArgs)?.RenderingTime;
-            if(currentRenderTime == _lastRenderTime)
+            if (currentRenderTime == _lastRenderTime)
             {
                 // It's possible for Rendering to call back twice in the same frame
                 // so only render when we haven't already rendered in this frame.
                 // Reference: https://docs.microsoft.com/en-us/dotnet/desktop/wpf/advanced/walkthrough-hosting-direct3d9-content-in-wpf?view=netframeworkdesktop-4.8#to-import-direct3d9-content
                 return;
             }
-            
+
             _lastRenderTime = currentRenderTime;
 
             if (RenderContinuously) InvalidateVisual();
@@ -219,7 +221,8 @@ namespace OpenTK.Wpf
             base.OnRender(drawingContext);
 
             bool isDesignMode = DesignerProperties.GetIsInDesignMode(this);
-            if (isDesignMode) {
+            if (isDesignMode)
+            {
                 DrawDesignTimeHelper(this, drawingContext);
             }
             else if (_renderer != null && _isStarted == true)
@@ -242,7 +245,7 @@ namespace OpenTK.Wpf
                             dpiScaleY = transformToDevice.M22;
                         }
                     }
-                    
+
                     Format format = Settings.TransparentBackground ? Format.A8R8G8B8 : Format.X8R8G8B8;
 
                     MultisampleType msaaType = MultisampleType.D3DMULTISAMPLE_NONE;
@@ -262,7 +265,7 @@ namespace OpenTK.Wpf
                 DrawUnstartedControlHelper(this, drawingContext);
             }
         }
-        
+
         protected override void OnRenderSizeChanged(SizeChangedInfo info)
         {
             base.OnRenderSizeChanged(info);
@@ -272,7 +275,7 @@ namespace OpenTK.Wpf
             {
                 return;
             }
-            
+
             if ((info.WidthChanged || info.HeightChanged) && (info.NewSize.Width > 0 && info.NewSize.Height > 0))
             {
                 InvalidateVisual();
