@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFrameworks>net9.0-windows;netcoreapp3.1;net6.0-windows;net8.0-windows;net462</TargetFrameworks>
+		<TargetFrameworks>net10.0-windows;net9.0-windows;netcoreapp3.1;net6.0-windows;net8.0-windows;net462</TargetFrameworks>
 		<UseWPF>true</UseWPF>
 		<RootNamespace>OpenTK.Wpf</RootNamespace>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -9,7 +9,7 @@
 		<Nullable>enable</Nullable>
 		<!--<OutputPath>bin\$(Configuration)\$(TargetFramework)</OutputPath>-->
 
-		<Description>A native control for WPF in OpenTK 3.x and 4.x.. (A Fork of OpenTK to migrate it to .NET9.0 (custom build) and fix dependency issues)</Description>
+		<Description>A native control for WPF in OpenTK 3.x and 4.x.. (A Fork of OpenTK to migrate it to .NET10.0 (custom build) and fix dependency issues)</Description>
 		<Copyright>Copyright (c) 2025 Team OpenTK</Copyright>
 		<Company>Team OpenTK</Company>
 		<PackageProjectUrl>https://github.com/ezhassen/GLWpfControl</PackageProjectUrl>
@@ -20,7 +20,7 @@
 		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
 		<PackageTags>OpenTK, GLWpfControl</PackageTags>
 		<PackageId>OpenTKEzz.GLWpfControl</PackageId>
-		<Version>4.3.4</Version>
+		<Version>4.3.5</Version>
 	</PropertyGroup>
 
 	<Choose>
@@ -31,8 +31,8 @@
 		</When>
 		<Otherwise>
 			<ItemGroup>
-				<PackageReference Include="OpenTKEzz.Graphics" Version="4.9.10" />
-				<PackageReference Include="OpenTKEzz.Windowing.Desktop" Version="4.9.10" />
+				<PackageReference Include="OpenTKEzz.Graphics" Version="4.9.11" />
+				<PackageReference Include="OpenTKEzz.Windowing.Desktop" Version="4.9.11" />
 			</ItemGroup>
 		</Otherwise>
 	</Choose>
